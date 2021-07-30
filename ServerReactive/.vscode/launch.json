@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AircraftApplication<aircraft>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.ngap.aircraft.AircraftApplication",
+            "projectName": "aircraft",
+            "args": ""
+        }
+    ]
+}
