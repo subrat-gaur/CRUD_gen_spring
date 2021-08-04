@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS aircrafts ;
 CREATE TABLE aircrafts (id SERIAL PRIMARY KEY, aircraftName VARCHAR(255), 
                                            aircraftOwner VARCHAR(255),
                                            engineManufacturer VARCHAR(255),

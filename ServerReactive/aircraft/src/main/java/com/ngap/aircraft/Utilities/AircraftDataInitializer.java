@@ -33,8 +33,7 @@ public class AircraftDataInitializer implements CommandLineRunner
         this.aircraftRepository.save(new aircraft().buildAircraft("1")).subscribe();
         this.aircraftRepository.save(new aircraft().buildAircraft("2")).subscribe();
         this.aircraftRepository.save(new aircraft().buildAircraft("3")).subscribe();
-                               
-        
+
 
 
 
