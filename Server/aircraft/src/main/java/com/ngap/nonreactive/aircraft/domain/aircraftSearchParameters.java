@@ -1,8 +1,8 @@
-package com.ngap.aircraft.domain;
+package com.ngap.nonreactive.aircraft.domain;
 
-
-import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+
 
 import lombok.Data;
 import lombok.Getter;
@@ -22,7 +22,7 @@ public class aircraftSearchParameters {
 
     public aircraftSearchParameters(String input) 
     {
-        
+        // String Data = '{"registrationNumber":"11","liveryCode":null,"serialNumber":null}'';
         JSONObject jsoncriteria = null;
         try {
             jsoncriteria = new JSONObject(input);

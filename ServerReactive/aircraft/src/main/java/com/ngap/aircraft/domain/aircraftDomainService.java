@@ -1,7 +1,5 @@
 package com.ngap.aircraft.domain;
 
-
-
 import com.ngap.aircraft.repository.aircraftReactiveRepository;
 
 import lombok.NonNull;
@@ -9,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -35,13 +35,34 @@ public class aircraftDomainService {
 
     public Flux<aircraft> findbyCriteria(aircraftSearchParameters _searchParameters ) {
 
-        aircraft _searchAircraft = new aircraft();
-        _searchAircraft.registrationNumber = _searchParameters.registrationNumber;
-        // _searchAircraft.liveryCode = _searchParameters.liveryCode;
-        // _searchAircraft.serialNumber = _searchParameters.serialNumber;
-        Example<aircraft> employeeExample = Example.of(_searchAircraft);
+        //Example<aircraft> employeeExample = Example.of(CreateQueryExample( _searchParameters));
 
-        return reactiveRepository.findAll(employeeExample);
+        var result =reactiveRepository.findAll(CreateQueryExample( _searchParameters));
+        //result.subscribe(i -> System.out.println(i));
+
+        return result;
+    }
+
+    Example<aircraft> CreateQueryExample(aircraftSearchParameters _searchParameters)
+    {
+        var exampleaircraft  = new aircraft();
+        // example.registrationNumber = _searchParameters.registrationNumber; 
+        // example.liveryCode = _searchParameters.liveryCode;
+        // example.serialNumber = _searchParameters.serialNumber;    
+        
+        exampleaircraft.registrationNumber = "17"; 
+        exampleaircraft.liveryCode = "15";
+        exampleaircraft.serialNumber = "19";   
+        
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase()
+        .withMatcher("registrationNumber", GenericPropertyMatcher::contains)
+        .withMatcher("liveryCode", GenericPropertyMatcher::contains)
+        .withMatcher("serialNumber", GenericPropertyMatcher::contains);
+        
+        Example<aircraft> example = Example.of(exampleaircraft, matcher);
+        
+        return example;
+        
     }
 
 
