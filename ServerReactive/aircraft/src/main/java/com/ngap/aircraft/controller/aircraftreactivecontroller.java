@@ -23,15 +23,15 @@ public class aircraftreactivecontroller {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/aircrafts")
     public Flux<aircraft> getaircrafts() {
-        return aircraftDS.findAll();
+        return aircraftDS.findAll()
+        // .log()
+        ;
     }
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("aircrafts/getaircraftsbySearchParameters/{_searchParameters}")
     public Flux<aircraft> getaircraftsbySearchParameters(@PathVariable String _searchParameters ) {
-        aircraftSearchParameters searchParameters = new aircraftSearchParameters(_searchParameters);
-        // return aircraftDS.findAll();
 
-        return aircraftDS.findbyCriteria(searchParameters);
+        return aircraftDS.findbyCriteria(new aircraftSearchParameters(_searchParameters));
     }
 
 }
